@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "PRESCRIPTION_REQUEST", schema = "DEBIT")
+@Table(name = "PRESCRIPTION_REQUEST")
 public class PrescriptionRequest {
     @Id
     @Column(name = "TPR_ID_REQUEST")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idRequest;
 
     @Column(name = "TPR_PROTOCOL", nullable = false)
@@ -28,4 +28,10 @@ public class PrescriptionRequest {
 
     @Column(name = "TPR_REGISTRATION_DATE")
     private LocalDateTime registrationDate;
+
+    public PrescriptionRequest(Long protocol, String applicant, LocalDateTime registrationDate) {
+        this.protocol = protocol;
+        this.applicant = applicant;
+        this.registrationDate = registrationDate;
+    }
 }

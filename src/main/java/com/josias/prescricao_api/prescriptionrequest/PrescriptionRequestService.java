@@ -2,7 +2,6 @@ package com.josias.prescricao_api.prescriptionrequest;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,11 +12,12 @@ import java.time.ZoneId;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.josias.prescricao_api.prescriptionrequest.PrescriptionRequestConverter.toPrescriptRequest;
+
 @Service
 @RequiredArgsConstructor
 public class PrescriptionRequestService {
-    @Autowired
-    private final PrescriptionRequestRepository prescriptionRequestRepository;
+    private PrescriptionRequestRepository prescriptionRequestRepository;
     @Value("${prescription.status.waiting}")
     private Integer statusWaiting;
     @Value("${header.login}")
@@ -25,7 +25,7 @@ public class PrescriptionRequestService {
 
     public PrescriptionRequest savePrescriptionRequestDebit(PrescriptionRequestDto prescriptionRequestDto,
                                                             HttpServletRequest request) {
-        return savePrescriptionRequest(new PrescriptionRequest(null,
+        return savePrescriptionRequest(toPrescriptRequest(
                 1L,
                 Objects.requireNonNull(request.getHeader("headerLogin")),
                 LocalDateTime.now(ZoneId.systemDefault()))

@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 
 @RestController
-@RequestMapping("extranet/prescription")
 @RequiredArgsConstructor
+@RequestMapping("extranet/prescription")
 public class PrescriptionRequestResource {
-    private final PrescriptionRequestService prescriptionRequestService;
+
+    private PrescriptionRequestService prescriptionRequestService;
 
     @PostMapping()
-    public ResponseEntity<PrescriptionRequest> getPrescriptionRequest(
+    public ResponseEntity<PrescriptionRequest> savePrescriptionRequest(
             @RequestBody PrescriptionRequestDto prescriptionRequestDto, HttpServletRequest request) {
         PrescriptionRequest prescriptionRequestSalved = prescriptionRequestService
                 .savePrescriptionRequestDebit(prescriptionRequestDto, request);
