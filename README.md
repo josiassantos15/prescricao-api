@@ -1,6 +1,6 @@
 # prescricao-api
 
-API RESTful para gerenciamento de prescricão de débitos.
+API RESTful para gerenciamento de prescrição de débitos.
 
 ## Funcionalidades
 
