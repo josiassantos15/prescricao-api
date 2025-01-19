@@ -13,7 +13,7 @@ import java.net.URI;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("extranet/prescription")
-public class PrescriptionRequestResource {
+public class PrescriptionRequestResource implements PrescriptionRequestOperations {
 
     private PrescriptionRequestService prescriptionRequestService;
 
